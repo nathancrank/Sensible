@@ -1,5 +1,7 @@
 # Sensible
-A Mobile-First Responsive Design SCSS framework 2012 Nathan Crank
+A Mobile-First Responsive Design SCSS framework
+
+2012 Nathan Crank
 
 ## What is Sensible?
 Sensible makes it easy to design responsive, mobile-first websites.
