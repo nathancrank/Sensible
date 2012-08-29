@@ -2,11 +2,28 @@
 A Mobile-First Responsive Design SCSS framework
 2012 Nathan Crank
 
+## What is Sensible?
+Sensible makes it easy to design responsive, mobile-first websites.
+
+## Requirements
+Requires SASS
+Compass + Sassy Math required for sens-variable-sizing
+
+## What is sens-variable-sizing?
+It's experimental.
+
+It automatically increases the base font-size in ems as the viewport widens.
+
+I'll explain what that means better at a later date.
+
 ## Documentation
 Read the source right now, its not that long, and pretty self explanatory.
 
-## What is variable-sizing?
-I'll explain that better later.
+## Support
+You can email me at sensible@nathancrank.com if you have questions.
+
+## Browser Support
+Bleeding edge only. That said, if you design using the principles of progressive enhancement, then this supports every browser ever.
 
 ## License
 New BSD License
