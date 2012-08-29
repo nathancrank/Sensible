@@ -142,7 +142,18 @@
   }
 }
 
+// height features are experimental still
+@mixin sens-min-height($break) {
+  @media (min-height: $break) {
+    @content
+  }
+}
 
+@mixin sens-max-height($break) {
+  @media (max-height: $break) {
+    @content
+  }
+}
 
 
 //////////////////////////////////////////////////////
