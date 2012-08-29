@@ -2,7 +2,6 @@
 // A Mobile-First Responsive Design SCSS framework
 // Nathan Crank
 
-// Requires SASS
 // Compass + Sassy Math required for sens-variable-sizing
 
 
@@ -65,7 +64,7 @@
 }
 
 @mixin sens-landscape {
-  @media (orientation: portait) {
+  @media (orientation: landscape) {
     @content
   }
 }
