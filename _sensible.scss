@@ -1,4 +1,4 @@
-// Sensible
+// Sensible v0.1
 // A Mobile-First Responsive Design SCSS framework
 // Nathan Crank
 
@@ -24,6 +24,18 @@
 //////////////////////////////////////////////////////
 // Queries
 //////////////////////////////////////////////////////
+
+@mixin sens-screen {
+  @media screen {
+    @content
+  }
+}
+
+@mixin sens-print {
+  @media print {
+    @content
+  }
+}
 
 @mixin sens-min($min) {
   @media (min-width: $min) {
@@ -51,6 +63,13 @@
 
 @mixin sens-landscape {
   @media (orientation: portait) {
+    @content
+  }
+}
+
+// please don't use this particular one, its just here for emergencies!
+@mixin sens-mobile-only($break: 47em) {
+  @media (max-width: $break) {
     @content
   }
 }
@@ -117,18 +136,6 @@
 
 @mixin sens-desktop-mammoth($break: 147em) {
   @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-screen {
-  @media screen {
-    @content
-  }
-}
-
-@mixin sens-print {
-  @media print {
     @content
   }
 }
