@@ -142,22 +142,11 @@
   }
 }
 
-// height features are experimental still
-@mixin sens-min-height($break) {
-  @media (min-height: $break) {
-    @content
-  }
-}
 
-@mixin sens-max-height($break) {
-  @media (max-height: $break) {
-    @content
-  }
-}
 
 
 //////////////////////////////////////////////////////
-// images
+// Images
 //////////////////////////////////////////////////////
 
 // sens-background-image takes a filename and uses the correct resolution version of it for a css background-image
@@ -203,5 +192,17 @@
       font-size: #{exponent($i,1,3)/3}em;
     }
     $i: $i + $inc;
+  }
+}
+
+@mixin sens-min-height($break) {
+  @media (min-height: $break) {
+    @content
+  }
+}
+
+@mixin sens-max-height($break) {
+  @media (max-height: $break) {
+    @content
   }
 }
