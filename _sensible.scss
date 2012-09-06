@@ -198,7 +198,7 @@
 //////////////////////////////////////////////////////
 
 // sens-variable-sizing automatically increases the base font-size in ems as the viewport widens.
-@mixin sens-variable-sizing($divisor: 3, $min: 57, $max: 157) {
+@mixin sens-variable-sizing($divisor: 4, $min: 57, $max: 157) {
   @for $i from $min through $max {
     @include sens-min(#{$i}em) {
       font-size: #{exponent($i,1,3)/$divisor}em;
