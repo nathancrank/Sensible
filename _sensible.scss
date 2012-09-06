@@ -198,6 +198,8 @@
 //////////////////////////////////////////////////////
 
 // sens-variable-sizing automatically increases the base font-size in ems as the viewport widens.
+// $divisor changes the growth rate, a higher value divisor results in slower growth.
+// $min and $max set the min and max ems at which to create media queries.
 @mixin sens-variable-sizing($divisor: 4, $min: 57, $max: 157) {
   @for $i from $min through $max {
     @include sens-min(#{$i}em) {
