@@ -70,6 +70,18 @@
   }
 }
 
+@mixin sens-hidpi($density: 1.5) {
+  @include sens-min-density($density) {
+    @content
+  }
+}
+
+@mixin sens-retina($density: 2) {
+  @include sens-min-density($density) {
+    @content
+  }
+}
+
 @mixin sens-portrait {
   @media (orientation: portait) {
     @content
