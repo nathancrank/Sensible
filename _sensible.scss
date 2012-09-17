@@ -176,7 +176,7 @@
 
 // sens-background-image takes a filename and uses the correct resolution version of it for a css background-image
 // the base (1x) file should not have any extra ending on its name
-// files should end in the following pattern: _1.5x, _2x, _3x, etc... (where "_" is the delimiter)
+// files should end in the following pattern: @1.5x, @2x, @3x, etc... (where "_" is the delimiter)
 // $img takes the images path and name up until the file extention (not including the ".")
 // $ext takes the images extention type, (default: png)
 // $state is used to declare img states (active, hover, etc...)
@@ -184,8 +184,9 @@
 // $max takes a numeric value at which to stop (default: 2)
 // $min takes a numeric value at which to start (default: 1)
 // $delim takes the delimiter style used (default "_")
+// $delim2 takes the delimiter style used for the dppx indicator (default "@", matching Apple's style)
 
-@mixin sens-background-image($img: "default", $state: "", $inc: 1, $ext: "png", $max: 2, $min: 1, $delim: "_"){
+@mixin sens-background-image($img: "default", $state: "", $inc: 1, $ext: "png", $max: 2, $min: 1, $delim: "_", $delim2: "@"){
   @if $state != "" {
     $state: $delim + $state;
   }
@@ -195,7 +196,7 @@
       background-image: url($img + $state + "." + $ext);
     } @else {
       @include sens-min-density($i) {
-        background-image: url($img + $state + $delim + $i + "x" + "." + $ext);
+        background-image: url($img + $state + $delim2 + $i + "x" + "." + $ext);
       };
     }
     $i: $i + $inc;
