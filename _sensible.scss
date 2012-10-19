@@ -1,8 +1,41 @@
-// Sensible v0.1
+// Sensible v0.2
 // A Mobile-First Responsive Design SCSS framework
 // Nathan Crank
+// http://sensible.nathancrank.com
 
-// Compass + Sassy Math required for sens-variable-sizing
+// sens-variable-sizing requires either:
+// - zealot (http://zealot.nathancrank.com)
+// - compass + sassy math
+
+
+
+//////////////////////////////////////////////////////
+// Box Model
+//////////////////////////////////////////////////////
+
+// breakpoint widths
+$sensWidthMobile: 37em;
+$sensWidthMobileWide: 37em;
+$sensWidthTablet: 47em;
+$sensWidthTabletWide: 57em;
+$sensWidthNotebook: 67em;
+$sensWidthNotebookWide: 77em;
+$sensWidthDesktop: 87em;
+$sensWidthDesktopWide: 97em;
+$sensWidthDesktopXWide: 107em;
+$sensWidthDesktopXXWide: 117em;
+$sensWidthDesktopXXXWide: 127em;
+$sensWidthDesktopXXXXWide: 137em;
+$sensWidthDesktopMammoth: 147em;
+
+// breakpoint heights
+$sensHeightMobile: 28em;
+$sensHeightMobileTall: $mobile;
+$sensHeightTablet: 46em;
+$sensHeightTabletTall: 62em;
+$sensHeightNotebook: 80em;
+$sensHeightDesktop: 98em;
+$sensHeightDesktopTall: 116em;
 
 
 
@@ -34,11 +67,22 @@
 }
 
 
+// One to setup everything
+@mixin sens-prep {
+  @include sens-box-sizing;
+  @include sens-viewport;
+}
+
+
 
 
 //////////////////////////////////////////////////////
 // Queries
 //////////////////////////////////////////////////////
+
+
+// Context
+//////////
 
 @mixin sens-screen {
   @media screen {
@@ -52,17 +96,139 @@
   }
 }
 
-@mixin sens-min($min) {
-  @media (min-width: $min) {
-    @content
+
+// Sizes
+///////
+
+@mixin sens-width($size, $oldie: false) {
+  @if $size == "mobile" {
+    @media (max-width: $sensWidthMobile) {
+      @content
+    }
+  }
+  @else if $size == "mobile-wide" {
+    @media (min-width: $sensWidthMobileWide) {
+      @content
+    }
+  }
+  @else if $size == "tablet" {
+    @media (min-width: $sensWidthTablet) {
+      @content
+    }
+  }
+  @else if $size == "tablet-wide" {
+    @media (min-width: $sensWidthTabletWide) {
+      @content
+    }
+  }
+  @else if $size == "notebook" {
+    @media (min-width: $sensWidthNotebook) {
+      @content
+    }
+  }
+  @else if $size == "notebook-wide" {
+    @media (min-width: $sensWidthNotebookWide) {
+      @content
+    }
+  }
+  @else if $size == "desktop" {
+    @media (min-width: $sensWidthDesktop) {
+      @content
+    }
+  }
+  @else if $size == "desktop-wide" {
+    @media (min-width: $sensWidthDesktopXWide) {
+      @content
+    }
+  }
+  @else if $size == "desktop-xwide" {
+    @media (min-width: $sensWidthDesktopXWide) {
+      @content
+    }
+  }
+  @else if $size == "desktop-xxwide" {
+    @media (min-width: $sensWidthDesktopXXWide) {
+      @content
+    }
+  }
+  @else if $size == "desktop-xxxwide" {
+    @media (min-width: $sensWidthDesktopXXXWide) {
+      @content
+    }
+  }
+  @else if $size == "desktop-xxxxwide" {
+    @media (min-width: $sensWidthDesktopXXXXWide) {
+      @content
+    }
+  }
+  @else if $size == "desktop-mammoth" {
+    @media (min-width: $sensWidthDesktopMammoth) {
+      @content
+    }
+  }
+  @else {
+    @warn "You're doing it wrong. Check your sens-min-width call."
+  }
+
+  @if ($oldie) {
+    .oldie &,
+    .lt-ie9 & {
+      @content
+    }
   }
 }
 
-@mixin sens-orient($orientation) {
-  @media (orientation: $orientation) {
-    @content
+@mixin sens-height($size, $oldie: false) {
+  @if $size == "mobile" {
+    @media (max-height: $sensHeightMobile) {
+      @content
+    }
+  }
+  @else if $size == "mobile-tall" {
+    @media (min-height: $sensHeightMobileTall) {
+      @content
+    }
+  }
+  @else if $size == "tablet" {
+    @media (min-height: $sensHeightTablet) {
+      @content
+    }
+  }
+  @else if $size == "tablet-tall" {
+    @media (min-height: $sensHeightTabletTall) {
+      @content
+    }
+  }
+  @else if $size == "notebook" {
+    @media (min-height: $sensHeightNotebook) {
+      @content
+    }
+  }
+  @else if $size == "desktop" {
+    @media (min-height: $sensHeightDesktop) {
+      @content
+    }
+  }
+  @else if $size == "desktop-tall" {
+    @media (min-height: $sensHeightDesktopTall) {
+      @content
+    }
+  }
+  @else {
+    @warn "You're doing it wrong. Check your sens-min-height call."
+  }
+
+  @if ($oldie) {
+    .oldie &,
+    .lt-ie9 & {
+      @content
+    }
   }
 }
+
+
+// Density
+//////////
 
 @mixin sens-min-density($density) {
   @media (-webkit-min-device-pixel-ratio: $density), (min-resolution: $density + "dppx") {
@@ -82,87 +248,24 @@
   }
 }
 
+
+// Orientation
+//////////////
+
+@mixin sens-orient($orientation) {
+  @media (orientation: $orientation) {
+    @content
+  }
+}
+
 @mixin sens-portrait {
-  @media (orientation: portait) {
+  @include sens-orient(portait) {
     @content
   }
 }
 
 @mixin sens-landscape {
-  @media (orientation: landscape) {
-    @content
-  }
-}
-
-// please don't use this particular one, its just here for emergencies!
-@mixin sens-mobile-only($break: 47em) {
-  @media (max-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-tablet($break: 47em) {
-  @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-tablet-portrait($break: 47em) {
-  @media (min-width: $break) and (orientation: portrait) {
-    @content
-  }
-}
-
-@mixin sens-tablet-landscape($break: 47em) {
-  @media (min-width: $break) and (orientation: landscape) {
-    @content
-  }
-}
-
-@mixin sens-tablet-wide($break: 57em) {
-  @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-notebook($break: 67em) {
-  @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-desktop($break: 77em) {
-  @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-desktop-large($break: 87em) {
-  @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-desktop-xlarge($break: 97em) {
-  @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-desktop-xxlarge($break: 107em) {
-  @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-desktop-xxxlarge($break: 127em) {
-  @media (min-width: $break) {
-    @content
-  }
-}
-
-@mixin sens-desktop-mammoth($break: 147em) {
-  @media (min-width: $break) {
+  @include sens-orient(landscape) {
     @content
   }
 }
@@ -213,22 +316,12 @@
 // sens-variable-sizing automatically increases the base font-size in ems as the viewport widens.
 // $divisor changes the growth rate, a higher value divisor results in slower growth.
 // $min and $max set the min and max ems at which to create media queries.
-@mixin sens-variable-sizing($divisor: 4, $min: 57, $max: 157) {
-  @for $i from $min through $max {
+@mixin sens-variable-sizing($divisor: 4, $min: $sensWidthTabletWide, $max: $sensWidthDesktopMammoth + 20em, $inc: 1, $nth: 3) {
+  $i: $min;
+  @while $i <= $max {
     @include sens-min(#{$i}em) {
-      font-size: #{exponent($i,1,3)/$divisor}em;
+      font-size: #{exponent($i,1,$nth)/$divisor}em;
     }
-  }
-}
-
-@mixin sens-min-height($break) {
-  @media (min-height: $break) {
-    @content
-  }
-}
-
-@mixin sens-max-height($break) {
-  @media (max-height: $break) {
-    @content
+    $i: $i + $inc;
   }
 }
