@@ -15,7 +15,7 @@
 
 // breakpoint widths
 $sensWidthMobile: 37em;
-$sensWidthMobileWide: 37em;
+$sensWidthMobileWide: $sensWidthMobile;
 $sensWidthTablet: 47em;
 $sensWidthTabletWide: 57em;
 $sensWidthNotebook: 67em;
@@ -30,7 +30,7 @@ $sensWidthDesktopMammoth: 147em;
 
 // breakpoint heights
 $sensHeightMobile: 28em;
-$sensHeightMobileTall: $mobile;
+$sensHeightMobileTall: $sensHeightMobile;
 $sensHeightTablet: 46em;
 $sensHeightTabletTall: 62em;
 $sensHeightNotebook: 80em;
