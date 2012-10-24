@@ -37,6 +37,9 @@ $sensHeightNotebook: 80em;
 $sensHeightDesktop: 98em;
 $sensHeightDesktopTall: 116em;
 
+// IE selector
+$sensIESelector: ".oldie";
+
 
 
 
@@ -171,8 +174,7 @@ $sensHeightDesktopTall: 116em;
   }
 
   @if ($oldie) {
-    .oldie &,
-    .lt-ie9 & {
+    #{$sensIESelector} & {
       @content
     }
   }
@@ -219,8 +221,7 @@ $sensHeightDesktopTall: 116em;
   }
 
   @if ($oldie) {
-    .oldie &,
-    .lt-ie9 & {
+    #{$sensIESelector} & {
       @content
     }
   }
