@@ -32,7 +32,7 @@ $sensWidthDesktopMammoth: 147em;
 $sensHeightMobile: 28em;
 $sensHeightMobileTall: $sensHeightMobile;
 $sensHeightTablet: 46em;
-$sensHeightTabletTall: 62em;
+$sensHeightTabletTall: 52em;
 $sensHeightNotebook: 80em;
 $sensHeightDesktop: 98em;
 $sensHeightDesktopTall: 116em;
@@ -103,6 +103,17 @@ $sensIESelector: ".oldie";
 // Sizes
 ///////
 
+@mixin sens-min-width($size, $oldie: false) {
+  @media (min-width: $size) {
+    @content
+  }
+  @if ($oldie) {
+    #{$sensIESelector} & {
+      @content
+    }
+  }
+}
+
 @mixin sens-width($size, $oldie: false) {
   @if $size == "mobile" {
     @media (max-width: $sensWidthMobile) {
@@ -170,9 +181,20 @@ $sensIESelector: ".oldie";
     }
   }
   @else {
-    @warn "You're doing it wrong. Check your sens-min-width call."
+    @warn "You're doing it wrong. Check your sens-width call."
   }
 
+  @if ($oldie) {
+    #{$sensIESelector} & {
+      @content
+    }
+  }
+}
+
+@mixin sens-min-height($size, $oldie: false) {
+  @media (min-height: $size) {
+    @content
+  }
   @if ($oldie) {
     #{$sensIESelector} & {
       @content
@@ -217,7 +239,7 @@ $sensIESelector: ".oldie";
     }
   }
   @else {
-    @warn "You're doing it wrong. Check your sens-min-height call."
+    @warn "You're doing it wrong. Check your sens-height call."
   }
 
   @if ($oldie) {
