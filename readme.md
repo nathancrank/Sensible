@@ -1,4 +1,4 @@
-# Sensible v0.1
+# Sensible v0.
 A Mobile-First Responsive Design SCSS framework
 Nathan Crank
 
@@ -7,12 +7,12 @@ Sensible makes it easy to design responsive, mobile-first websites. It is a coll
 
 ## Requirements
 Requires SASS.
-Compass + Sassy Math required for sens-variable-sizing.
+Zealot or Compass + Sassy Math required for sens-variable-sizing.
 
 ## What is sens-variable-sizing?
 It's experimental.
 
-It automatically increases the base font-size in ems as the viewport widens. It follows the growth path provided by y=(cuberootx)/z, where y=font-size and x=viewport width and z is the user provided divisor (defaults to 3).
+It automatically increases the base font-size in ems as the viewport widens. It follows the growth path provided by y=(cuberootx)/z, where y=font-size and x=viewport width and z is the user provided divisor (defaults to 4).
 
 I'll explain what that means better at a later date.
 
