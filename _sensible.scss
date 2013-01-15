@@ -10,32 +10,8 @@
 
 
 //////////////////////////////////////////////////////
-// Box Model
+// Variables
 //////////////////////////////////////////////////////
-
-// breakpoint widths
-$sensWidthMobile: 37em;
-$sensWidthMobileWide: $sensWidthMobile;
-$sensWidthTablet: 47em;
-$sensWidthTabletWide: 57em;
-$sensWidthNotebook: 67em;
-$sensWidthNotebookWide: 77em;
-$sensWidthDesktop: 87em;
-$sensWidthDesktopWide: 97em;
-$sensWidthDesktopXWide: 107em;
-$sensWidthDesktopXXWide: 117em;
-$sensWidthDesktopXXXWide: 127em;
-$sensWidthDesktopXXXXWide: 137em;
-$sensWidthDesktopMammoth: 147em;
-
-// breakpoint heights
-$sensHeightMobile: 28em;
-$sensHeightMobileTall: $sensHeightMobile;
-$sensHeightTablet: 46em;
-$sensHeightTabletTall: 52em;
-$sensHeightNotebook: 80em;
-$sensHeightDesktop: 98em;
-$sensHeightDesktopTall: 116em;
 
 // IE selector
 $sensIESelector: ".oldie";
@@ -79,27 +55,6 @@ $sensIESelector: ".oldie";
 
 
 
-//////////////////////////////////////////////////////
-// Queries
-//////////////////////////////////////////////////////
-
-
-// Context
-//////////
-
-@mixin sens-screen {
-  @media screen {
-    @content
-  }
-}
-
-@mixin sens-print {
-  @media print {
-    @content
-  }
-}
-
-
 // Sizes
 ///////
 
@@ -114,134 +69,10 @@ $sensIESelector: ".oldie";
   }
 }
 
-@mixin sens-width($size, $oldie: false) {
-  @if $size == "mobile" {
-    @media (max-width: $sensWidthMobile) {
-      @content
-    }
-  }
-  @else if $size == "mobile-wide" {
-    @media (min-width: $sensWidthMobileWide) {
-      @content
-    }
-  }
-  @else if $size == "tablet" {
-    @media (min-width: $sensWidthTablet) {
-      @content
-    }
-  }
-  @else if $size == "tablet-wide" {
-    @media (min-width: $sensWidthTabletWide) {
-      @content
-    }
-  }
-  @else if $size == "notebook" {
-    @media (min-width: $sensWidthNotebook) {
-      @content
-    }
-  }
-  @else if $size == "notebook-wide" {
-    @media (min-width: $sensWidthNotebookWide) {
-      @content
-    }
-  }
-  @else if $size == "desktop" {
-    @media (min-width: $sensWidthDesktop) {
-      @content
-    }
-  }
-  @else if $size == "desktop-wide" {
-    @media (min-width: $sensWidthDesktopXWide) {
-      @content
-    }
-  }
-  @else if $size == "desktop-xwide" {
-    @media (min-width: $sensWidthDesktopXWide) {
-      @content
-    }
-  }
-  @else if $size == "desktop-xxwide" {
-    @media (min-width: $sensWidthDesktopXXWide) {
-      @content
-    }
-  }
-  @else if $size == "desktop-xxxwide" {
-    @media (min-width: $sensWidthDesktopXXXWide) {
-      @content
-    }
-  }
-  @else if $size == "desktop-xxxxwide" {
-    @media (min-width: $sensWidthDesktopXXXXWide) {
-      @content
-    }
-  }
-  @else if $size == "desktop-mammoth" {
-    @media (min-width: $sensWidthDesktopMammoth) {
-      @content
-    }
-  }
-  @else {
-    @warn "You're doing it wrong. Check your sens-width call."
-  }
-
-  @if ($oldie) {
-    #{$sensIESelector} & {
-      @content
-    }
-  }
-}
-
 @mixin sens-min-height($size, $oldie: false) {
   @media (min-height: $size) {
     @content
   }
-  @if ($oldie) {
-    #{$sensIESelector} & {
-      @content
-    }
-  }
-}
-
-@mixin sens-height($size, $oldie: false) {
-  @if $size == "mobile" {
-    @media (max-height: $sensHeightMobile) {
-      @content
-    }
-  }
-  @else if $size == "mobile-tall" {
-    @media (min-height: $sensHeightMobileTall) {
-      @content
-    }
-  }
-  @else if $size == "tablet" {
-    @media (min-height: $sensHeightTablet) {
-      @content
-    }
-  }
-  @else if $size == "tablet-tall" {
-    @media (min-height: $sensHeightTabletTall) {
-      @content
-    }
-  }
-  @else if $size == "notebook" {
-    @media (min-height: $sensHeightNotebook) {
-      @content
-    }
-  }
-  @else if $size == "desktop" {
-    @media (min-height: $sensHeightDesktop) {
-      @content
-    }
-  }
-  @else if $size == "desktop-tall" {
-    @media (min-height: $sensHeightDesktopTall) {
-      @content
-    }
-  }
-  @else {
-    @warn "You're doing it wrong. Check your sens-height call."
-  }
-
   @if ($oldie) {
     #{$sensIESelector} & {
       @content
@@ -275,20 +106,14 @@ $sensIESelector: ".oldie";
 // Orientation
 //////////////
 
-@mixin sens-orient($orientation) {
-  @media (orientation: $orientation) {
-    @content
-  }
-}
-
 @mixin sens-portrait {
-  @include sens-orient(portait) {
+  @media (orientation: portrait) {
     @content
   }
 }
 
 @mixin sens-landscape {
-  @include sens-orient(landscape) {
+  @media (orientation: landscape) {
     @content
   }
 }
