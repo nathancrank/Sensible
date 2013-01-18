@@ -1,4 +1,4 @@
-# Sensible v0.
+# Sensible v0.3
 A Mobile-First Responsive Design SCSS framework
 Nathan Crank
 
