@@ -14,7 +14,8 @@
 //////////////////////////////////////////////////////
 
 // IE selector
-$sensIESelector: ".oldie";
+$sens-oldie-selector: ".oldie";
+$sens-oldie-default: false;
 
 
 
@@ -54,23 +55,23 @@ $sensIESelector: ".oldie";
 // Sizes
 ///////
 
-@mixin sens-min-width($size, $oldie: false) {
+@mixin sens-min-width($size, $oldie: $sens-oldie-default) {
   @media (min-width: $size) {
     @content
   }
   @if ($oldie) {
-    #{$sensIESelector} & {
+    #{$sens-oldie-selector} & {
       @content
     }
   }
 }
 
-@mixin sens-min-height($size, $oldie: false) {
+@mixin sens-min-height($size, $oldie: $sens-oldie-default) {
   @media (min-height: $size) {
     @content
   }
   @if ($oldie) {
-    #{$sensIESelector} & {
+    #{$sens-oldie-selector} & {
       @content
     }
   }
