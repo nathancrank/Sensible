@@ -134,7 +134,7 @@ $sens-oldie-default: false;
 // $delim takes the delimiter style used (default "_")
 // $delim2 takes the delimiter style used for the dppx indicator (default "@", matching Apple's style)
 
-@mixin sens-background-image($img: "default", $state: "", $inc: 1, $ext: "png", $max: 2, $min: 1, $delim: "_", $delim2: "@"){
+@mixin sens-background-image($img: "default", $state: "", $inc: .5, $ext: "png", $max: 1.5, $min: 1, $delim: "_", $delim2: "@"){
   @if $state != "" {
     $state: $delim + $state;
   }
