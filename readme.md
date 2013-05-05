@@ -56,48 +56,21 @@ mres() lets you pass a basic integer the defines a minimum css pixel ratio at wh
 
 sens-bg-image() lets you quickly declare all responsive forms of an image.
 Calling:
-@include sens-bg-image($img: "default", $ext: "png", $svg: "true", $hires: "@2x", $hiresmin: "1.1")
+	@include sens-bg-image($img: "default", $ext: "png", $svg: "true", $hires: "@2x", $hiresmin: "1.1")
 Prints:
-background-image: url("default.png");
-@media (-webkit-min-device-pixel-ratio: 1.1),
-       (min-resolution: 1.1dppx) {
-  background-image: url("default@2x.png");
-}
-.svg & {
-  background-image: url("default.svg")
-}
-* SVG support requires Modernizr or similar testing suite to apply .svg to <html>.
+	background-image: url("default.png");
+	@media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+		background-image: url("default@2x.png");
+	}
+	.svg & {
+  	background-image: url("default.svg")
+	}
+
+
+*** SVG support requires Modernizr or similar testing suite to apply .svg to <html>.
 
 ## Support
 You can email me at sensible@nathancrank.com if you have questions.
 
-## Browser Support
-Bleeding edge only. That said, if you design using the principles of progressive enhancement, then this supports every browser in theory.
-
 ## License
-New BSD License
-
-Copyright (c) 2013, Nathan Crank
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-    * Neither the name of the <organization> nor the
-      names of its contributors may be used to endorse or promote products
-      derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+None, have fun.
