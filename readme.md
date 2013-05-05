@@ -27,6 +27,7 @@ Sensibles real strength and workflow benefit comes from using the minq(), maxq()
 minq() and maxq() declare min-width and max-width media queries and print and IE selector with the same styles if it qualifies against the constant $sens-oldie-bp. 
 
 To use minq() and maxq(), first declare the IE conditionals at the top of your sites html above the <head> tag.
+
 <!DOCTYPE html>
 <!--[if lt IE 9]> <html class="no-js oldie"> <![endif]-->
 <!--[if IE 9]> <html class="no-js ie9"> <![endif]-->
@@ -38,18 +39,20 @@ $sens-oldie-default: false;
 $sens-oldie-bp: 60em;
 
 $sens-oldie-selector defines the selector used in your IE conditionals.
+
 $sens-oldie-default toggles whether all calls of minq() and maxq() print and IE selector. It is set to false by default (and I recommend you leave it that way)
+
 $sens-oldie-bp defines the media query at which all styles applied to higher media queries also apply to oldie.
 Examples:
-   $sens-oldie-bp is set at 60em
-   @include minq(32em) {} styles would be applied to oldie, but minq(77em) would not
-   @include maxq(32em) {} styles would not be applied to oldeie, but maxq(77em) would be
-   @include maxq(32em,true) {} styles would be applied
+- $sens-oldie-bp is set at 60em
+- @include minq(32em) {} styles would be applied to oldie, but minq(77em) would not
+- @include maxq(32em) {} styles would not be applied to oldeie, but maxq(77em) would be
+- @include maxq(32em,true) {} styles would be applied
 
 mres() lets you pass a basic integer the defines a minimum css pixel ratio at which above to use the included css.
-	@include mres(2) would match an Apple retina device.
-	@include mres(1.3) would match a Nexus 7
-	@include mres(4) would match something awesome thats not out yet.
+- @include mres(2) would match an Apple retina device.
+- @include mres(1.3) would match a Nexus 7
+- @include mres(4) would match something awesome thats not out yet.
 
 sens-bg-image() lets you quickly declare all responsive forms of an image.
 Calling:
