@@ -26,12 +26,12 @@ Sensibles real strength and workflow benefit comes from using the minq(), maxq()
 
 minq() and maxq() declare min-width and max-width media queries and print and IE selector with the same styles if it qualifies against the constant $sens-oldie-bp. 
 
-To use minq() and maxq(), first declare the IE conditionals at the top of your sites html above the <head> tag.
+To use minq() and maxq(), first declare the IE conditionals at the top of your sites html above the head tag.
 
-<!DOCTYPE html>
-<!--[if lt IE 9]> <html class="no-js oldie"> <![endif]-->
-<!--[if IE 9]> <html class="no-js ie9"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+	<!DOCTYPE html>
+	<!--[if lt IE 9]> <html class="no-js oldie"> <![endif]-->
+	<!--[if IE 9]> <html class="no-js ie9"> <![endif]-->
+	<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
 
 There are a few defaults to set in your sass.
 $sens-oldie-selector: ".oldie";
