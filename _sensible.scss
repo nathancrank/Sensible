@@ -113,7 +113,7 @@ $sens-oldie-bp: 60em;
   @include mres(1.1) {
     background-image: image-url($img + $hires + "." + $ext);
   };
-  @if ($svg) {
+  @if ($svg == "true") {
     .svg & {
       background-image: image-url($img + ".svg")
     }
