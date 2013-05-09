@@ -1,4 +1,4 @@
-// Sensible v0.5
+// Sensible v0.5.1
 // A Mobile-First Responsive Design SCSS framework
 // Nathan Crank
 // http://github.com/nathancrank/sensible
@@ -108,12 +108,12 @@ $sens-oldie-bp: 60em;
 // Responsive Images
 //////////////////////////////////////////////////////
 
-@mixin sens-bg-image($img: "default", $ext: "png", $svg: "false", $hires: "@2x"){
+@mixin sens-bg-image($img: "default", $ext: "png", $svg: false, $hires: "@2x"){
   background-image: image-url($img + "." + $ext);
   @include mres(1.1) {
     background-image: image-url($img + $hires + "." + $ext);
   };
-  @if ($svg == "true") {
+  @if ($svg) {
     .svg & {
       background-image: image-url($img + ".svg")
     }

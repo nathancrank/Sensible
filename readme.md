@@ -1,4 +1,4 @@
-# Sensible v0.5
+# Sensible v0.5.1
 A Mobile-First Responsive Design SCSS framework
 Nathan Crank
 
@@ -67,7 +67,7 @@ Prints:
 	}
 
 
-* SVG support requires Modernizr or similar testing suite to apply .svg to <html>.
+*. SVG support requires Modernizr or similar testing suite to apply .svg to <html>.
 
 ## Support
 You can email me at sensible@nathancrank.com if you have questions.
