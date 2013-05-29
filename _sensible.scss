@@ -1,4 +1,4 @@
-// Sensible v0.5.1
+// Sensible v0.5.2
 // A Mobile-First Responsive Design SCSS framework
 // Nathan Crank
 // http://github.com/nathancrank/sensible
@@ -21,8 +21,9 @@ $sens-oldie-default: false;
 // Examples:
 //   $sens-oldie-bp is set at 60em
 //   @include minq(32em) {} styles would be applied to oldie, but minq(77em) would not
-//   @include maxq(32em) {} styles would not be applied to oldie, but maxq(77em) would be
+//   @include maxq(32em) {} styles would not be applied to olideie, but maxq(77em) would be
 $sens-oldie-bp: 60em;
+$sens-oldie-bpv: 40em;
 
 
 
@@ -63,16 +64,17 @@ $sens-oldie-bp: 60em;
 // Media Queries
 //////////////////////////////////////////////////////
 
-// Sizes
-///////
+// horizontal
 
 @mixin minq($size, $oldie: $sens-oldie-default) {
   @media (min-width: $size) {
     @content
   }
-  @if ($oldie or $size lt $sens-oldie-bp) {
-    #{$sens-oldie-selector} & {
-      @content
+  @if ($oldie == true or $oldie == false) {
+    @if ($oldie or $size lt $sens-oldie-bp) {
+      #{$sens-oldie-selector} & {
+        @content
+      }
     }
   }
 }
@@ -81,18 +83,45 @@ $sens-oldie-bp: 60em;
   @media (max-width: $size) {
     @content
   }
-  @if ($oldie or $size lt $sens-oldie-bp) {
-    #{$sens-oldie-selector} & {
-      @content
+  @if ($oldie == true or $oldie == false) {
+    @if ($oldie or $size lt $sens-oldie-bp) {
+      #{$sens-oldie-selector} & {
+        @content
+      }
+    }
+  }
+}
+
+// vertical
+
+@mixin minvq($size, $oldie: $sens-oldie-default) {
+  @media (min-height: $size) {
+    @content
+  }
+  @if ($oldie == true or $oldie == false) {
+    @if ($oldie or $size lt $sens-oldie-bpv) {
+      #{$sens-oldie-selector} & {
+        @content
+      }
+    }
+  }
+}
+
+@mixin maxvq($size, $oldie: $sens-oldie-default) {
+  @media (max-height: $size) {
+    @content
+  }
+  @if ($oldie == true or $oldie == false) {
+    @if ($oldie or $size lt $sens-oldie-bpv) {
+      #{$sens-oldie-selector} & {
+        @content
+      }
     }
   }
 }
 
 
-
-
 // Density
-//////////
 
 @mixin mres($density) {
   @media (-webkit-min-device-pixel-ratio: $density),
@@ -108,9 +137,9 @@ $sens-oldie-bp: 60em;
 // Responsive Images
 //////////////////////////////////////////////////////
 
-@mixin sens-bg-image($img: "default", $ext: "png", $svg: false, $hires: "@2x"){
+@mixin sens-bg-image($img: "default", $ext: "png", $svg: false, $hires: "@2x", $hiresmin: "1.1"){
   background-image: image-url($img + "." + $ext);
-  @include mres(1.1) {
+  @include mres($hiresmin) {
     background-image: image-url($img + $hires + "." + $ext);
   };
   @if ($svg) {

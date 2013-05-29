@@ -1,4 +1,4 @@
-# Sensible v0.5.1
+# Sensible v0.5.2
 A Mobile-First Responsive Design SCSS framework
 Nathan Crank
 
@@ -24,7 +24,7 @@ To quickly set all elements to use border-box and declare the new css declaratio
 ### Save Development Time
 Sensibles real strength and workflow benefit comes from using the minq(), maxq(), mres() and sens-bg-image().
 
-minq() and maxq() declare min-width and max-width media queries and print and IE selector with the same styles if it qualifies against the constant $sens-oldie-bp. 
+minq() and maxq() declare min-width and max-width media queries and print and IE selector with the same styles if it qualifies against the constant $sens-oldie-bp. minvq() and maxvq() declare vertical media queries.
 
 To use minq() and maxq(), first declare the IE conditionals at the top of your sites html above the head tag.
 
