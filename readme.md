@@ -54,18 +54,7 @@ mres() lets you pass a basic integer the defines a minimum css pixel ratio at wh
 - @include mres(1.3) would match a Nexus 7
 - @include mres(4) would match something awesome thats not out yet.
 
-sens-bg-image() lets you quickly declare all responsive forms of an image.
-Calling:
-	@include sens-bg-image($img: "default", $ext: "png", $svg: "true", $hires: "@2x", $hiresmin: "1.1")
-Prints:
-	background-image: url("default.png");
-	@media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
-		background-image: url("default@2x.png");
-	}
-	.svg & {
-  	background-image: url("default.svg")
-	}
-
+background-progress() documentation coming soon.
 
 *. SVG support requires Modernizr or similar testing suite to apply .svg to <html>.
 

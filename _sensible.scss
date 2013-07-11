@@ -1,4 +1,4 @@
-// Sensible v0.5.2
+// Sensible v0.6.1 beta
 // A Mobile-First Responsive Design SCSS framework
 // Nathan Crank
 // http://github.com/nathancrank/sensible
@@ -12,19 +12,25 @@
 // you can override all constants by changing them here, or better yet,
 // by overriding them your code base after importing Sensible
 
-// IE selector
+// Old IE selector
+//   Recommended to use conditional comments to target IE8 and below
+//   IE9 and above support media queries properly
 $sens-oldie-selector: ".oldie";
+
+// enable oldie selector to be applied to all media queries by changing to true - not recommended
 $sens-oldie-default: false;
 
-// experimental
-// $sens-oldie-bp defines the media query at which all styles applied to higher media queries also apply to oldie.
+// $sens-oldie-bp(h,v) defines the media query at which all styles applied to higher value media queries also apply to oldie.
 // Examples:
-//   $sens-oldie-bp is set at 60em
+//   $sens-oldie-bp(h,v) is set at 60em
 //   @include minq(32em) {} styles would be applied to oldie, but minq(77em) would not
 //   @include maxq(32em) {} styles would not be applied to olideie, but maxq(77em) would be
-$sens-oldie-bp: 60em;
+$sens-oldie-bph: 60em;
 $sens-oldie-bpv: 40em;
 
+// background-progressive() defaults
+$sens-background-progressive-size-default: "base";
+$sens-background-progressive-filetype-default: "png";
 
 
 //////////////////////////////////////////////////////
@@ -32,7 +38,7 @@ $sens-oldie-bpv: 40em;
 //////////////////////////////////////////////////////
 
 // sens-border-box changes an elements box model to border-box
-@mixin sens-border-box {
+@mixin border-box {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -40,21 +46,19 @@ $sens-oldie-bpv: 40em;
 
 // sens-viewport sets the new viewport property properly for responsive designs in IE10
 // and other browsers current/future implementations of css based viewports
-@mixin sens-viewport {
-  @-webkit-viewport { width: device-width }
-     @-moz-viewport { width: device-width }
-      @-ms-viewport { width: device-width }
-       @-o-viewport { width: device-width }
-          @viewport { width: device-width }
+@mixin viewport {
+  @-webkit-viewport { @content }
+     @-moz-viewport { @content }
+      @-ms-viewport { @content }
+       @-o-viewport { @content }
+          @viewport { @content }
 }
 
 
 // One to setup everything for most projects
 @mixin sens-prep {
-  * {
-    @include sens-border-box;
-  }
-  @include sens-viewport;
+  * { @include border-box; }
+  @include viewport { width: device-width; };
 }
 
 
@@ -63,6 +67,7 @@ $sens-oldie-bpv: 40em;
 //////////////////////////////////////////////////////
 // Media Queries
 //////////////////////////////////////////////////////
+// TODO : Make $oldie work better when false or "false"
 
 // horizontal
 
@@ -70,8 +75,8 @@ $sens-oldie-bpv: 40em;
   @media (min-width: $size) {
     @content
   }
-  @if ($oldie == true or $oldie == false) {
-    @if ($oldie or $size lt $sens-oldie-bp) {
+  @if ($oldie != "false") {
+    @if ($oldie or $size > $sens-oldie-bph) {
       #{$sens-oldie-selector} & {
         @content
       }
@@ -83,8 +88,8 @@ $sens-oldie-bpv: 40em;
   @media (max-width: $size) {
     @content
   }
-  @if ($oldie == true or $oldie == false) {
-    @if ($oldie or $size lt $sens-oldie-bp) {
+  @if ($oldie != "false") {
+    @if ($oldie or $size < $sens-oldie-bph) {
       #{$sens-oldie-selector} & {
         @content
       }
@@ -98,8 +103,8 @@ $sens-oldie-bpv: 40em;
   @media (min-height: $size) {
     @content
   }
-  @if ($oldie == true or $oldie == false) {
-    @if ($oldie or $size lt $sens-oldie-bpv) {
+  @if ($oldie != "false") {
+    @if ($oldie or $size > $sens-oldie-bpv) {
       #{$sens-oldie-selector} & {
         @content
       }
@@ -111,8 +116,8 @@ $sens-oldie-bpv: 40em;
   @media (max-height: $size) {
     @content
   }
-  @if ($oldie == true or $oldie == false) {
-    @if ($oldie or $size lt $sens-oldie-bpv) {
+  @if ($oldie != "false") {
+    @if ($oldie or $size < $sens-oldie-bpv) {
       #{$sens-oldie-selector} & {
         @content
       }
@@ -137,14 +142,83 @@ $sens-oldie-bpv: 40em;
 // Responsive Images
 //////////////////////////////////////////////////////
 
-@mixin sens-bg-image($img: "default", $ext: "png", $svg: false, $hires: "@2x", $hiresmin: "1.1"){
-  background-image: image-url($img + "." + $ext);
-  @include mres($hiresmin) {
-    background-image: image-url($img + $hires + "." + $ext);
-  };
-  @if ($svg) {
-    .svg & {
-      background-image: image-url($img + ".svg")
+@mixin background-progressive($filename,
+                              $basic: $sens-background-progressive-filetype-default,
+                              $prog: $basic,
+                              $size: $sens-background-progressive-size-default,
+                              $max: 2) {
+  // Arguments:
+  // $filename: string, basic filename, with no extention or path information
+  // $basic: string, basic versions filetype, should be png or jpg (I guess you could use a gif?)
+  //         # default: set with $sens-background-progressive-filetype-default
+  // $prog: string or list
+  //        string value should be png, jpg, svg, or webp, order is important
+  //        list value should be a space separate list that combines any two or three of the valid string values
+  //        order is important, recommended orders:
+  //         - "png", "jpg", "webp", "svg"
+  //         - "png, svg", "png, webp", "jpg, webp", "jpg, svg"
+  //         - "png, webp, svg", "jpg, webp, svg"
+  //        # default: $basic
+  // $size : string, value will be passed into background-size declaration
+  //         if value is none, no background-size will be printed
+  //         if value is "base", then base image size will be applied automatically. 
+  //         # default: set with $sens-background-progressive-size-default
+  // $max: integer, highest @($max)x value to increment through on bitmap formats
+  //        # default: 2
+
+  // There is no type or value validation happening here, don't pass in stupid values? Maybe that can be added later...
+  // Basic declaration of the image with the most basic format, making the assumption that the browser can handle at least jpg and png correctly. (I think that's safe in 2013...)
+  // Browsers without basic image support or images turned off will ignore everything in this mixin (think older Kindle).
+  background-image: image-url($filename + "." + $basic);
+
+  // Declaring background size if specified
+  @if ($size != "none") {
+    @if ($size == "base") { // auto calculate
+      background-size: image-width($filename + "." + $basic) image-height($filename + "." + $basic);
+    } @else {
+      background-size: $size; // print what was passed
     }
   }
+
+  // now lets get fancy
+  @if (type-of($prog) == "string") {
+    @include background-progressive-loop($filename, $prog, $max);
+  } @else if (type-of($prog) == "list") {
+    @each $ext in $prog {
+      @include background-progressive-loop($filename, $ext, $max);
+    }
+  }
+}
+// This next mixin would never be called directly by a user, its just a support to background-progressive
+@mixin background-progressive-loop($filename, $ext, $max) {
+  @if ($ext != "svg" and $ext != "webp") {
+    @for $n from 2 to $max + 1 {
+      @include mres($n - .9) {
+        // by using $n - .9 we make sure that anyone above the previous integer pixel ratio gets a good looking image
+        // only using webkit-min-device-pixel and the standards based min-resolution with dppx declartion
+        //   # this ensures that older browsers that don't really scale interfaces properly do no try and use a higher resolution image than they support
+        //     my preference would be that they see all of slightly fuzzy image rather than a quarter of a slightly crisper image.
+        //     this is especially important when background-size is not supported by the browser
+        //     Supports: IE9+, newer Firefoxes, newer Operas (not mini, which skips this declaration), Safari on Mac and iOS, Android, Chrome
+        background-image: image-url($filename + "@" + $n + "x." + $ext);
+      };
+    }
+  } @else {
+    #{"." + $ext} & {
+      background-image: image-url($filename + "." + $ext);
+    }
+  }
+}
+
+
+
+
+//////////////////////////////////////////////////////
+// Calc with vendor prefix
+//////////////////////////////////////////////////////
+// Just until Safari and Chrome remove the vendor prefix
+
+@mixin calc($prop, $calc) {
+  #{$prop}: -webkit-calc(#{$calc});
+  #{$prop}: -calc(#{$calc});
 }
