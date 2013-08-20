@@ -13,16 +13,16 @@ SASS. But you're already using that, right?
 To get started, Sensible can set a few intelligent defaults that make responsive design easier.
 
 To set an element to use border-box:
-@include sens-border-box;
+@include border-box();
 
 To set up the viewport using the new css declarations:
-@include sens-viewport;
+@include viewport();
 
 To quickly set all elements to use border-box and declare the new css declarations use:
-@include sens-prep;
+@include sens-prep();
 
 ### Save Development Time
-Sensibles real strength and workflow benefit comes from using the minq(), maxq(), mres() and sens-bg-image().
+Sensibles real strength and workflow benefit comes from using the minq(), maxq(), mres() and background-progressive().
 
 minq() and maxq() declare min-width and max-width media queries and print and IE selector with the same styles if it qualifies against the constant $sens-oldie-bp. minvq() and maxvq() declare vertical media queries.
 
@@ -52,9 +52,16 @@ mres() lets you pass a basic integer the defines a minimum css pixel ratio at wh
 - @include mres(1.3) would match a Nexus 7
 - @include mres(4) would match something awesome thats not out yet.
 
-background-progress() documentation coming soon.
+background-progress() helps you use @2x png/jpg images and svg/webp to provide hires images. It takes advantage of Compass's image-url() feature to make relative paths irrelevant.
+- @include background-progressive("test") would print code for a standard 1x png and a 2x png.
+- @include background-progressive("test", jpg) would print the same code but for jpgs.
+- @include background-progressive("test", svg) would print code for a 1x png and an svg where supported
+- @include background-progressive("test", png svg) would print code for a 1x png, a 2x png and an svg
+- @include background-progressive("test", png webp svg) would print code a a 1x png, a 2x png, a webp, and an svg
+All files should be named the same thing, except with an @2x where appropriate.
+ex. test.png, test@2x.png, test.jpg, test@2x.jpg, test.svg, test.png
 
-*. SVG support requires Modernizr or similar testing suite to apply .svg to <html>.
+* SVG & WebP support requires Modernizr or similar testing suite to apply .svg and .webp to <html>.
 
 ## Support
 You can email me at sensible@nathancrank.com if you have questions.

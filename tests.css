@@ -158,6 +158,13 @@ background-progressive-png2x {
     background-progressive-png2x {
       background-image: image-url("test1@2x.png"); } }
 
+background-progressive-jpg2x {
+  background-image: image-url("test1.jpg");
+  background-size: image-width("test1.jpg") image-height("test1.jpg"); }
+  @media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+    background-progressive-jpg2x {
+      background-image: image-url("test1@2x.jpg"); } }
+
 background-progressive-svg {
   background-image: image-url("test2.svg");
   background-size: image-width("test2.svg") image-height("test2.svg"); }
@@ -171,6 +178,15 @@ background-progressive-png2x-svg {
     background-progressive-png2x-svg {
       background-image: image-url("test3@2x.png"); } }
   .svg background-progressive-png2x-svg {
+    background-image: image-url("test3.svg"); }
+
+background-progressive-jpg2x-svg {
+  background-image: image-url("test3.jpg svg");
+  background-size: image-width("test3.jpg svg") image-height("test3.jpg svg"); }
+  @media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+    background-progressive-jpg2x-svg {
+      background-image: image-url("test3@2x.jpg"); } }
+  .svg background-progressive-jpg2x-svg {
     background-image: image-url("test3.svg"); }
 
 background-progressive-png2x-webp {

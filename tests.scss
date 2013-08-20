@@ -148,11 +148,17 @@ min-res{
 background-progressive-png2x {
 	@include background-progressive("test1");
 }
+background-progressive-jpg2x {
+	@include background-progressive("test1", jpg);
+}
 background-progressive-svg {
 	@include background-progressive("test2", svg);
 }
 background-progressive-png2x-svg {
 	@include background-progressive("test3", png svg);
+}
+background-progressive-jpg2x-svg {
+	@include background-progressive("test3", jpg svg);
 }
 background-progressive-png2x-webp {
 	@include background-progressive("test4", png webp);
