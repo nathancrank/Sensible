@@ -1,0 +1,171 @@
+@import "sensible";
+
+/* Check variables exist */
+variables {
+	@if (type-of($sens-oldie-selector) == string) {
+		sens-oldie-selector: true;
+	}
+	@if (type-of($sens-oldie-bph) == number) {
+		sens-oldie-bph: true;
+	}
+	@if (type-of($sens-oldie-bpv) == number) {
+		sens-oldie-bpv: true;
+	}
+	@if (type-of($sens-background-progressive-size-default) == string) {
+		sens-oldie-selector: true;
+	}
+	@if (type-of($sens-background-progressive-filetype-default) == string) {
+		sens-oldie-selector: true;
+	}
+}
+
+
+
+
+/* Doc setup tests */
+
+/* @include border-box(); */
+* {
+	@include border-box();
+}
+
+/* @include viewport(); */
+@include viewport();
+
+/* @include sens-prep(); */
+@include sens-prep();
+
+
+
+
+/* Media Query Tests */
+minq {
+	/* print mq & oldie */
+	@include minq(50em) {
+		oldie: true;
+	}
+	/* force only mq */
+	@include minq(50em, false) {
+		oldie: false;
+	}
+	/* force only mq */
+	@include minq(50em, "false") {
+		oldie: false;
+	}
+	/* print mq only */
+	@include minq(70em) {
+		oldie: false;
+	}
+	/* force mq & oldie */
+	@include minq(70em, true) {
+		oldie: true;
+	}
+}
+
+maxq {
+	/* only mq */
+	@include maxq(50em) {
+		oldie: false;
+	}
+	/* force mq & oldie */
+	@include maxq(50em, true) {
+		oldie: true;
+	}
+	/* print mq & oldie */
+	@include maxq(70em) {
+		oldie: true;
+	}
+	/* force only mq */
+	@include maxq(70em, false) {
+		oldie: false;
+	}
+}
+
+minvq {
+	/* print mq & oldie */
+	@include minvq(30em) {
+		oldie: true;
+	}
+	/* force only mq */
+	@include minvq(30em, false) {
+		oldie: false;
+	}
+	/* print mq only */
+	@include minvq(50em) {
+		oldie: false;
+	}
+	/* force mq & oldie */
+	@include minvq(50em, true) {
+		oldie: true;
+	}
+}
+
+maxvq {
+	/* only mq */
+	@include maxvq(30em) {
+		oldie: false;
+	}
+	/* force mq & oldie */
+	@include maxvq(30em, true) {
+		oldie: true;
+	}
+	/* print mq & oldie */
+	@include maxvq(50em) {
+		oldie: true;
+	}
+	/* force only mq */
+	@include maxvq(50em, false) {
+		oldie: false;
+	}
+}
+
+
+
+
+/* Minimum Resolution */
+min-res{
+	@include mres(1) {
+		ratio: 1;
+	}
+	@include mres(1.1) {
+		ratio: 1.1;
+	}
+	@include mres(2) {
+		ratio: 2;
+	}
+	@include mres(3) {
+		ratio: 3;
+	}
+	@include mres(4) {
+		ratio: 4;
+	}
+}
+
+
+
+
+/* Responsive Images */
+background-progressive-png2x {
+	@include background-progressive("test1");
+}
+background-progressive-svg {
+	@include background-progressive("test2", svg);
+}
+background-progressive-png2x-svg {
+	@include background-progressive("test3", png svg);
+}
+background-progressive-png2x-webp {
+	@include background-progressive("test4", png webp);
+}
+background-progressive-png2x-webp-svg {
+	@include background-progressive("test4", png webp svg);
+}
+
+
+
+
+/* Calc */
+calc {
+	@include calc("width","100% - (4 * 2em)");
+	@include calc("height","100% - 100px");
+}

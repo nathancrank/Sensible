@@ -1,4 +1,4 @@
-# Sensible v0.5.2
+# Sensible v0.7 beta
 A Mobile-First Responsive Design SCSS framework
 Nathan Crank
 
@@ -35,19 +35,17 @@ To use minq() and maxq(), first declare the IE conditionals at the top of your s
 
 There are a few defaults to set in your sass.
 $sens-oldie-selector: ".oldie";
-$sens-oldie-default: false;
 $sens-oldie-bp: 60em;
 
 $sens-oldie-selector defines the selector used in your IE conditionals.
-
-$sens-oldie-default toggles whether all calls of minq() and maxq() print and IE selector. It is set to false by default (and I recommend you leave it that way)
 
 $sens-oldie-bp defines the media query at which all styles applied to higher media queries also apply to oldie.
 Examples:
 - $sens-oldie-bp is set at 60em
 - @include minq(32em) {} styles would be applied to oldie, but minq(77em) would not
 - @include maxq(32em) {} styles would not be applied to oldeie, but maxq(77em) would be
-- @include maxq(32em,true) {} styles would be applied
+- @include maxq(32em, true) {} styles would be applied
+- @include maxq(117em, false) {} styles would not be applied
 
 mres() lets you pass a basic integer the defines a minimum css pixel ratio at which above to use the included css.
 - @include mres(2) would match an Apple retina device.

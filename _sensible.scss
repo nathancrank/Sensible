@@ -1,4 +1,4 @@
-// Sensible v0.6.1 beta
+// Sensible v0.7 beta
 // A Mobile-First Responsive Design SCSS framework
 // Nathan Crank
 // http://github.com/nathancrank/sensible
@@ -15,22 +15,19 @@
 // Old IE selector
 //   Recommended to use conditional comments to target IE8 and below
 //   IE9 and above support media queries properly
-$sens-oldie-selector: ".oldie";
-
-// enable oldie selector to be applied to all media queries by changing to true - not recommended
-$sens-oldie-default: false;
+$sens-oldie-selector: ".oldie" !default;
 
 // $sens-oldie-bp(h,v) defines the media query at which all styles applied to higher value media queries also apply to oldie.
 // Examples:
 //   $sens-oldie-bp(h,v) is set at 60em
 //   @include minq(32em) {} styles would be applied to oldie, but minq(77em) would not
 //   @include maxq(32em) {} styles would not be applied to olideie, but maxq(77em) would be
-$sens-oldie-bph: 60em;
-$sens-oldie-bpv: 40em;
+$sens-oldie-bph: 60em !default;
+$sens-oldie-bpv: 40em !default;
 
 // background-progressive() defaults
-$sens-background-progressive-size-default: "base";
-$sens-background-progressive-filetype-default: "png";
+$sens-background-progressive-size-default: "base" !default;
+$sens-background-progressive-filetype-default: "png" !default;
 
 
 //////////////////////////////////////////////////////
@@ -67,60 +64,67 @@ $sens-background-progressive-filetype-default: "png";
 //////////////////////////////////////////////////////
 // Media Queries
 //////////////////////////////////////////////////////
-// TODO : Make $oldie work better when false or "false"
 
 // horizontal
 
-@mixin minq($size, $oldie: $sens-oldie-default) {
+@mixin minq($size, $oldie: "auto") {
   @media (min-width: $size) {
     @content
   }
-  @if ($oldie != "false") {
-    @if ($oldie or $size > $sens-oldie-bph) {
-      #{$sens-oldie-selector} & {
-        @content
-      }
+  @if ($oldie == "auto" and $size < $sens-oldie-bph) {
+    #{$sens-oldie-selector} & {
+      @content
+    }
+  } @else if ($oldie == true) {
+    #{$sens-oldie-selector} & {
+      @content
     }
   }
 }
 
-@mixin maxq($size, $oldie: $sens-oldie-default) {
+@mixin maxq($size, $oldie: "auto") {
   @media (max-width: $size) {
     @content
   }
-  @if ($oldie != "false") {
-    @if ($oldie or $size < $sens-oldie-bph) {
-      #{$sens-oldie-selector} & {
-        @content
-      }
+  @if ($oldie == "auto" and $size > $sens-oldie-bph) {
+    #{$sens-oldie-selector} & {
+      @content
+    }
+  } @else if ($oldie == true) {
+    #{$sens-oldie-selector} & {
+      @content
     }
   }
 }
 
 // vertical
 
-@mixin minvq($size, $oldie: $sens-oldie-default) {
+@mixin minvq($size, $oldie: "auto") {
   @media (min-height: $size) {
     @content
   }
-  @if ($oldie != "false") {
-    @if ($oldie or $size > $sens-oldie-bpv) {
-      #{$sens-oldie-selector} & {
-        @content
-      }
+  @if ($oldie == "auto" and $size < $sens-oldie-bpv) {
+    #{$sens-oldie-selector} & {
+      @content
+    }
+  } @else if ($oldie == true) {
+    #{$sens-oldie-selector} & {
+      @content
     }
   }
 }
 
-@mixin maxvq($size, $oldie: $sens-oldie-default) {
+@mixin maxvq($size, $oldie: "auto") {
   @media (max-height: $size) {
     @content
   }
-  @if ($oldie != "false") {
-    @if ($oldie or $size < $sens-oldie-bpv) {
-      #{$sens-oldie-selector} & {
-        @content
-      }
+  @if ($oldie == "auto" and $size > $sens-oldie-bpv) {
+    #{$sens-oldie-selector} & {
+      @content
+    }
+  } @else if ($oldie == true) {
+    #{$sens-oldie-selector} & {
+      @content
     }
   }
 }
@@ -220,5 +224,5 @@ $sens-background-progressive-filetype-default: "png";
 
 @mixin calc($prop, $calc) {
   #{$prop}: -webkit-calc(#{$calc});
-  #{$prop}: -calc(#{$calc});
+  #{$prop}: calc(#{$calc});
 }

@@ -1,0 +1,201 @@
+/* Check variables exist */
+variables {
+  sens-oldie-selector: true;
+  sens-oldie-bph: true;
+  sens-oldie-bpv: true;
+  sens-oldie-selector: true;
+  sens-oldie-selector: true; }
+
+/* Doc setup tests */
+/* @include border-box(); */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* @include viewport(); */
+@-webkit-viewport {}
+@-moz-viewport {}
+@-ms-viewport {}
+@-o-viewport {}
+@viewport {}
+/* @include sens-prep(); */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+@-webkit-viewport {
+  width: device-width; }
+
+@-moz-viewport {
+  width: device-width; }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+@viewport {
+  width: device-width; }
+
+/* Media Query Tests */
+minq {
+  /* print mq & oldie */
+  /* force only mq */
+  /* force only mq */
+  /* print mq only */
+  /* force mq & oldie */ }
+  @media (min-width: 50em) {
+    minq {
+      oldie: true; } }
+  .oldie minq {
+    oldie: true; }
+  @media (min-width: 50em) {
+    minq {
+      oldie: false; } }
+  @media (min-width: 50em) {
+    minq {
+      oldie: false; } }
+  @media (min-width: 70em) {
+    minq {
+      oldie: false; } }
+  @media (min-width: 70em) {
+    minq {
+      oldie: true; } }
+  .oldie minq {
+    oldie: true; }
+
+maxq {
+  /* only mq */
+  /* force mq & oldie */
+  /* print mq & oldie */
+  /* force only mq */ }
+  @media (max-width: 50em) {
+    maxq {
+      oldie: false; } }
+  @media (max-width: 50em) {
+    maxq {
+      oldie: true; } }
+  .oldie maxq {
+    oldie: true; }
+  @media (max-width: 70em) {
+    maxq {
+      oldie: true; } }
+  .oldie maxq {
+    oldie: true; }
+  @media (max-width: 70em) {
+    maxq {
+      oldie: false; } }
+
+minvq {
+  /* print mq & oldie */
+  /* force only mq */
+  /* print mq only */
+  /* force mq & oldie */ }
+  @media (min-height: 30em) {
+    minvq {
+      oldie: true; } }
+  .oldie minvq {
+    oldie: true; }
+  @media (min-height: 30em) {
+    minvq {
+      oldie: false; } }
+  @media (min-height: 50em) {
+    minvq {
+      oldie: false; } }
+  @media (min-height: 50em) {
+    minvq {
+      oldie: true; } }
+  .oldie minvq {
+    oldie: true; }
+
+maxvq {
+  /* only mq */
+  /* force mq & oldie */
+  /* print mq & oldie */
+  /* force only mq */ }
+  @media (max-height: 30em) {
+    maxvq {
+      oldie: false; } }
+  @media (max-height: 30em) {
+    maxvq {
+      oldie: true; } }
+  .oldie maxvq {
+    oldie: true; }
+  @media (max-height: 50em) {
+    maxvq {
+      oldie: true; } }
+  .oldie maxvq {
+    oldie: true; }
+  @media (max-height: 50em) {
+    maxvq {
+      oldie: false; } }
+
+/* Minimum Resolution */
+@media (-webkit-min-device-pixel-ratio: 1), (min-resolution: 1dppx) {
+  min-res {
+    ratio: 1; } }
+@media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+  min-res {
+    ratio: 1.1; } }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  min-res {
+    ratio: 2; } }
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 3dppx) {
+  min-res {
+    ratio: 3; } }
+@media (-webkit-min-device-pixel-ratio: 4), (min-resolution: 4dppx) {
+  min-res {
+    ratio: 4; } }
+
+/* Responsive Images */
+background-progressive-png2x {
+  background-image: image-url("test1.png");
+  background-size: image-width("test1.png") image-height("test1.png"); }
+  @media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+    background-progressive-png2x {
+      background-image: image-url("test1@2x.png"); } }
+
+background-progressive-svg {
+  background-image: image-url("test2.svg");
+  background-size: image-width("test2.svg") image-height("test2.svg"); }
+  .svg background-progressive-svg {
+    background-image: image-url("test2.svg"); }
+
+background-progressive-png2x-svg {
+  background-image: image-url("test3.png svg");
+  background-size: image-width("test3.png svg") image-height("test3.png svg"); }
+  @media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+    background-progressive-png2x-svg {
+      background-image: image-url("test3@2x.png"); } }
+  .svg background-progressive-png2x-svg {
+    background-image: image-url("test3.svg"); }
+
+background-progressive-png2x-webp {
+  background-image: image-url("test4.png webp");
+  background-size: image-width("test4.png webp") image-height("test4.png webp"); }
+  @media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+    background-progressive-png2x-webp {
+      background-image: image-url("test4@2x.png"); } }
+  .webp background-progressive-png2x-webp {
+    background-image: image-url("test4.webp"); }
+
+background-progressive-png2x-webp-svg {
+  background-image: image-url("test4.png webp svg");
+  background-size: image-width("test4.png webp svg") image-height("test4.png webp svg"); }
+  @media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+    background-progressive-png2x-webp-svg {
+      background-image: image-url("test4@2x.png"); } }
+  .webp background-progressive-png2x-webp-svg {
+    background-image: image-url("test4.webp"); }
+  .svg background-progressive-png2x-webp-svg {
+    background-image: image-url("test4.svg"); }
+
+/* Calc */
+calc {
+  width: -webkit-calc(100% - (4 * 2em));
+  width: calc(100% - (4 * 2em));
+  height: -webkit-calc(100% - 100px);
+  height: calc(100% - 100px); }
