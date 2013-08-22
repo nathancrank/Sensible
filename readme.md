@@ -49,7 +49,7 @@ Examples:
 
 mres() lets you pass a basic floating point value that defines a minimum css pixel ratio at which above to use the included css.
 - @include mres(2) would match an Apple retina device.
-- @include mres(1.3) would match a Nexus 7
+- @include mres(1.3) would match a first generation Nexus 7
 - @include mres(4) would match something awesome thats not out yet.
 
 background-progressive() helps you use @2x png/jpg images and svg/webp to provide hires images. It takes advantage of Compass's image-url() feature to make relative paths irrelevant.
