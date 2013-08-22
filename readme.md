@@ -47,12 +47,12 @@ Examples:
 - @include maxq(32em, true) {} styles would be applied
 - @include maxq(117em, false) {} styles would not be applied
 
-mres() lets you pass a basic integer the defines a minimum css pixel ratio at which above to use the included css.
+mres() lets you pass a basic floating point value that defines a minimum css pixel ratio at which above to use the included css.
 - @include mres(2) would match an Apple retina device.
 - @include mres(1.3) would match a Nexus 7
 - @include mres(4) would match something awesome thats not out yet.
 
-background-progress() helps you use @2x png/jpg images and svg/webp to provide hires images. It takes advantage of Compass's image-url() feature to make relative paths irrelevant.
+background-progressive() helps you use @2x png/jpg images and svg/webp to provide hires images. It takes advantage of Compass's image-url() feature to make relative paths irrelevant.
 - @include background-progressive("test") would print code for a standard 1x png and a 2x png.
 - @include background-progressive("test", jpg) would print the same code but for jpgs.
 - @include background-progressive("test", svg) would print code for a 1x png and an svg where supported
