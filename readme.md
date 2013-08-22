@@ -57,11 +57,13 @@ background-progressive() helps you use @2x png/jpg images and svg/webp to provid
 - @include background-progressive("test", jpg) would print the same code but for jpgs.
 - @include background-progressive("test", svg) would print code for a 1x png and an svg where supported
 - @include background-progressive("test", png svg) would print code for a 1x png, a 2x png and an svg
-- @include background-progressive("test", png webp svg) would print code a a 1x png, a 2x png, a webp, and an svg
+- @include background-progressive("test", png webp svg) would print code for a 1x png, a 2x png, a webp, and an svg
 All files should be named the same thing, except with an @2x where appropriate.
 ex. test.png, test@2x.png, test.jpg, test@2x.jpg, test.svg, test.png
 
 * SVG & WebP support requires Modernizr or similar testing suite to apply .svg and .webp to <html>.
+
+Note: background-progressive() does not currently support fallbacks for jpg/png above @2x. Coming eventually.
 
 ## Support
 You can email me at sensible@nathancrank.com if you have questions.
